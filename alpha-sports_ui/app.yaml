@@ -1,0 +1,13 @@
+runtime: nodejs16
+
+handlers:
+- url: /static
+  static_dir: build/static
+
+- url: /(.*\.(json|ico|js|png|txt|svg|woff|ttf|html|eot|woff2|jpeg|jpg))
+  static_files: build/\1
+  upload: build/.*\.(json|ico|js|png|txt|svg|woff|ttf|html|eot|woff2|jpeg|jpg)
+
+- url: .*
+  static_files: build/index.html
+  upload: build/index.html

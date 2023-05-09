@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Recommendation</title>
+</head>
+<body>
+    <h1>Player Recommendation</h1>
+    <form action="/recommend" method="post">
+        <label for="player_type">Player Type:</label>
+        <input type="radio" name="player_type" value="outfield" required> Outfield Players
+        <input type="radio" name="player_type" value="goalkeeper" required> Goal Keepers
+        <br><br>
+        <label for="player_name">Player Name:</label>
+
+        <select name="player_name" required>
+            <option value="Lionel Messi">Lionel Messi</option>
+            <option value="Cristiano Ronaldo">Cristiano Ronaldo</option>
+        </select>
+        <br><br>
+        <label for="preferred_foot">Preferred Foot:</label>
+        <select name="preferred_foot" required>
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+            <option value="all">All</option>
+        </select>
+        <br><br>
+        <label for="num_results">Number of Results:</label>
+        <input type="range" name="num_results" min="5" max="20" value="5">
+        <br><br>
+        <label for="league">League:</label>
+        <select name="league" required>
+            <option value="english">English</option>
+            <option value="spanish">Spanish</option>
+        </select>
+        <br><br>
+        <label for="comparison_with">Comparison With:</label>
+        <select name="comparison_with" required>
+            <option value="position_1">Position 1</option>
+            <option value="position_2">Position 2</option>
+            <option value="position_3">Position 3</option>
+            <option value="all">All</option>
+        </select>
+        <br><br>
+        <label for="age_bracket">Age Bracket:</label>
+        <input type="range" name="age_bracket" min="15" max="42" value="15">
+        <br><br>
+        <input type="submit" value="Get Recommendations">
+    </form>
+    <script>
+        function csvColumnAsDropdown(csvFile, dropdownId) {
+            var dropdown = document.getElementById(dropdownId);
+            var csv = new XMLHttpRequest();
+            csv.open("GET", csvFile, true);
+            csv.onreadystatechange = function() {
+                if (csv.readyState === 4 && csv.status === 200) {
+                    var allTextLines = csv.responseText.split(/\r\n|\n/);
+                    var headers = allTextLines[0].split(',');
+                    var lines = [];
+                    for (var i = 1; i < allTextLines.length; i++) {
+                        var data = allTextLines[i].split(',');
+                        if (data.length == headers.length) {
+                            var tarr = [];
+                            for (var j = 0; j < headers.length; j++) {
+                                tarr.push(data[j]);
+                            }
+                            lines.push(tarr);
+                        }
+                    }
+                    for (var i = 0; i < lines.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = lines[i][0];
+                        dropdown.add(option);
+                    }
+                }
+            }
+            csv.send(null);
+        }
+    </script>
+</body>
+</html>
