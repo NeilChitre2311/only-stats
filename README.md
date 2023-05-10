@@ -1,8 +1,8 @@
-# Alpha Sports
+# Only-Stats
 
 ## Overview
 
-Alpha Sports is a sports analytics platform that provides data-driven insights using cutting-edge data science and machine learning techniques. Our solutions help sports franchises identify potential talents, predict injury risks, and estimate player financial metrics while offering a fantasy sports platform for fans.
+Only-Stats is a sports analytics platform that provides data-driven insights using cutting-edge data science and machine learning techniques. Our solutions help sports franchises identify potential talents, predict injury risks, and estimate player financial metrics while offering a fantasy sports platform for fans.
 
 ## Screenshots
 ### Player Recommendation
